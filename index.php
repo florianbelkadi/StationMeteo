@@ -1,6 +1,8 @@
 <?php 
+
 require_once("header.php") ;
 ?>
+
 
 <div class="boxPrincipale">
     <div class="maisonIcon"> 19°C</div>
