@@ -14,11 +14,11 @@ if (strlen($jsonData) > 0) {
 } else
     die('Aucune données JSON.');
 
-var_dump($data);
+//Insertion dans l atable données et recuperation du dernier ID 
 $lastId = insertDonnees($pdo,$data['temp'],$data['humidite'],$data['pression']);
-echo $lastId;
-$sqlQuerySensorName = 'INSERT INTO capteurs(Id_Donnees,NomCapteur) VALUES (:Id, :NomCapteur)';
 
+// Requete pour inserer dans la table capteurs
+$sqlQuerySensorName = 'INSERT INTO capteurs(Id_Donnees,NomCapteur) VALUES (:Id, :NomCapteur)';
 // Préparation
 $insertSensorName = $pdo->prepare($sqlQuerySensorName);
 // Exécution 

@@ -40,7 +40,7 @@ const char* password = "StationMdp";
 const int minutes = 10;
 
 //Nom et adresse du raspberry Pi
-String serverName = "http://172.20.10.7:80/stationMeteo/index.php";
+String serverName = "http://172.20.10.7:80/stationMeteo/api/receiveData.php";
 
 void setup() {
   
