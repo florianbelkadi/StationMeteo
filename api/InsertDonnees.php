@@ -1,6 +1,6 @@
 <?php 
-    include_once '../connexionBDD.php';
-
+include_once '../connexionBDD.php';
+// Cette foncionn permet d'inserer la partie commune des données récoltées (Via api ou capteur) dans la BDD
 Function insertDonnees($pdo,$temp,$hum,$pres)
 {
 // Ecriture de la requête
@@ -10,7 +10,6 @@ $sqlQueryDonnees = 'INSERT INTO donnees(Temperature,Humidite,Pression,DateDonnee
 $insertDonnee = $pdo->prepare($sqlQueryDonnees);
 $date = new DateTime();
 $date = $date->format('y/m/g  H:i:s');
-var_dump($date);
 // Exécution 
 $insertDonnee->execute([
    'Temperature' =>  $temp,
