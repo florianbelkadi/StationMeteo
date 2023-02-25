@@ -1,4 +1,5 @@
 <?php 
+
 require_once("header.php") ;
 require_once 'connexionBDD.php';
 include 'app/GetLastSensorDatas.php';
@@ -42,7 +43,6 @@ $donneesCapteur = GetLastSensorDatas($pdo,3);
         </div>
     </div>
 </div>
-
 
 
 
