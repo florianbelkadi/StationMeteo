@@ -13,17 +13,6 @@
 
 #define SERIAL_BAUD 74880
 
-// Reglages du capteur
-//BME280I2C::Settings settings(
-//   BME280::OSR_X1,
-//   BME280::OSR_X1,
-//   BME280::OSR_X1,
-//   BME280::Mode_Forced,
-//   BME280::StandbyTime_1000ms,
-//   BME280::Filter_16,
-//   BME280::SpiEnable_False,
-//   BME280I2C::I2CAddr_0x76
-//);
 BME280I2C bme;
 
 // reglage LCD (adresse i2C, colonnes, lignes)
@@ -53,8 +42,8 @@ void setup() {
 // connexion à l'écran
   lcd.begin(false);
   lcd.backlight();
-  lcd.setCursor(0,1);
-  lcd.print("Bonjour");
+  lcd.setCursor(4,0);
+  lcd.print("Bonjour!");
   delay(3000); 
   lcd.clear();
   
@@ -63,31 +52,50 @@ void setup() {
   {
     Serial.println("Impossible de trouver le capteur!");
     lcd.clear();
-    Serial.println("Pas de capteur!");
+    lcd.print("Connexion au ");
+    lcd.setCursor(0,1);
+    lcd.print("capteur en cours");
     delay(1000);
   }
   Serial.println("Capteur trouvé!");
   lcd.clear();
-  lcd.print("Capteur trouvé!");
-
+  lcd.print("Connexion au ");
+  lcd.setCursor(0,1);
+  lcd.print("capteur reussie");
+  delay(2000);
  
  
   
 // connexion au wifi 
   WiFi.begin(ssid, password);
   Serial.println("");
-  lcd.clear();
-  lcd.print("Connexion");
-  while(WiFi.status() != WL_CONNECTED) {
+   lcd.clear();
+  lcd.print("Connexion au ");
+  lcd.setCursor(0,1);
+  lcd.print("wifi en cours");
+  int tentatives = 0;
+  while((WiFi.status() != WL_CONNECTED)&& tentatives<50) {
     delay(500);
     Serial.print(".");
+    tentatives++;
   }
+  if (WiFi.status() == WL_CONNECTED)
+  {
   Serial.println("");
   Serial.print("Connecté au wifi avec l'adresse IP: ");
-    lcd.clear();
-    lcd.print("Connecte");
-    delay(3000);
   Serial.println(WiFi.localIP());
+  lcd.clear();
+  lcd.print("Connexion au ");
+  lcd.setCursor(0,1);
+  lcd.print("wifi reussie");
+  delay(2000);
+  }
+  else 
+  {
+    lcd.clear();
+    lcd.print("Mode hors ligne");
+    delay(2000);
+  }
 }
 
 void loop() {
@@ -99,10 +107,17 @@ void loop() {
        lcd.clear();
        datas = fetchData(); 
        showData(datas);
+       if (WiFi.status() != WL_CONNECTED)
+          {
+            lcd.clear();
+            lcd.print("Mode Hors Ligne");
+            delay(2000);
+           }
        timer++;
-       delay(5000);
    }
-   postData(datas);
+   if (WiFi.status() == WL_CONNECTED)
+     postData(datas);
+   
 }
 
 String fetchData() {
@@ -142,9 +157,8 @@ String fetchData() {
 return jsonDatas;
 }
 
-void postData(String jsonDatas) {
-  //Verifie la connexion wifi 
-  if(WiFi.status()== WL_CONNECTED){
+void postData(String jsonDatas) 
+{
       WiFiClient client;
       HTTPClient http;
       
@@ -161,10 +175,6 @@ void postData(String jsonDatas) {
         
       // Libère la ressource
       http.end();
-    }
-    else {
-      Serial.println("Pas de connexion wifi");
-    }
 }
 
 
@@ -172,8 +182,42 @@ void showData(String datas)
 {
   StaticJsonDocument<200> jsonDatas;
   deserializeJson(jsonDatas,datas); 
+  // Creation du caractère "°" 
+
+  byte degres[8] = {
+    0b01100,
+    0b10010,
+    0b01100,
+    0b00000,
+    0b00000,
+    0b00000,
+    0b00000,
+    0b00000
+    };
+  lcd.createChar(1, degres); // création du caractère personnalisé
+  
   lcd.print("Temperature");
   lcd.setCursor(0,1);
-  String stemp = jsonDatas["temp"];
-  lcd.print(stemp);
+  float stemp = jsonDatas["temp"];
+  lcd.print(stemp,2);
+  lcd.print(" ");
+  lcd.print(char(1));
+  lcd.print("C");
+  delay(2000);
+  
+  lcd.clear();
+  lcd.print("Humidite");
+  lcd.setCursor(0,1);
+  float sHum = jsonDatas["humidite"];
+  lcd.print(sHum,2);
+  lcd.print(" %");
+  delay(2000);
+  
+  lcd.clear();
+  lcd.print("Pression");
+  lcd.setCursor(0,1);
+  float sPres = jsonDatas["pression"];
+  lcd.print(sPres,2);
+  lcd.print(" hPa");
+  delay(2000);
 }
