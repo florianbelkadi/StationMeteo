@@ -6,7 +6,6 @@ html{
 body{
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     display: flex;
-    justify-content: space-between;
     flex-direction: column;
     align-items: center;
     text-align: center;
@@ -28,12 +27,16 @@ a{
 ul{
     list-style: none;
 }
+h1,h2{
+    margin-top: 0;
+}
 
 /* MENU */
 header{
     display: flex;
-    margin-top: 20px;
-    justify-content: space-between
+    margin: 20px;
+    width: 100%;
+    justify-content: space-around;
 }
 .menuIcon{
     background-image: url(img/menu.svg);
@@ -48,7 +51,6 @@ header{
     background-size: cover;
     height: 40px;
     width: 40px;
-    margin-right: 5%;
 }
 .menu{
         display: flex;
@@ -84,8 +86,8 @@ header{
     background-image: url(img/Maison.svg);
     background-repeat: no-repeat;
     background-size: cover;
-    height: 100px;
-    width: 100px;
+    height: 150px;
+    width: 150px;
 }
 
 .humiditeIcon{
@@ -103,8 +105,68 @@ header{
     height: 100px;
     width: 100px;
 }
+.donneesParSource{
+    width: 90%;
+    margin-bottom: 50px;
+}
 
+.boxSecondaire{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.temperature{
+    font-size: 40px;
+    place-self: center;
 
+}
+
+table {
+    width: 90%;
+    border-collapse: collapse;
+    border-radius: 1em;
+    overflow: hidden;
+  }
+  
+  th, td {
+    padding: 1em;
+    background: #dddddd3d;
+  }
+  tr {
+    border-bottom: 1px solid white; 
+  }
+  table tbody tr:last-child{
+    border-bottom:0px;
+  }
+.elementform{
+    width: 90%;
+    margin-bottom: 20px;
+} 
+.dates{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+form{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+input[type="date"],input[type="submit"]{
+    background-color: white;
+    top: 50%;
+    left: 50%;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+}
+input[type="submit"]{
+    width: 30%;
+}
 /* Footer */
 
 

@@ -7,7 +7,7 @@
 
 
 <footer>
-<div class="footer">
+<!-- <div class="footer">
 <h2>Prévisions météo</h2>
 
         <div class="prevision">
@@ -27,7 +27,7 @@
             <div>Temp</div>
         </div>
         </div>
-</div>
+</div> -->
 </footer>
 
 
