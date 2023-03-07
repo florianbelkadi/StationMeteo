@@ -8,7 +8,7 @@ Function insertDonnees($pdo,$temp,$hum,$pres,$capt)
 $idCapteur = GetIdCapteur($pdo,$capt);
 
 // Ecriture de la requête
-$sqlQueryDonnees = 'INSERT INTO donnees(Temperature,Humidite,Pression,DateDonnee,Id_NomCapteurs) VALUES (:Temperature, :Humidite, :Pression, :DateDonnee,:idCapt)';
+$sqlQueryDonnees = 'INSERT INTO Donnees(Temperature,Humidite,Pression,DateDonnee,Id_NomCapteurs) VALUES (:Temperature, :Humidite, :Pression, :DateDonnee,:idCapt)';
 
 // Préparation
 $insertDonnee = $pdo->prepare($sqlQueryDonnees);
