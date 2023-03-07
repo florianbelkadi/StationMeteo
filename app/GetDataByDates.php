@@ -9,13 +9,13 @@ require_once './connexionBDD.php';
  */
 function getLastWeek($pdo) :array
 {
-    $sqlQuery = 'SELECT nomcapteurs.NomCapteur,donnees.DateDonnee,AVG(donnees.Temperature) as TempMoy,AVG(donnees.Humidite) as HumMoy,AVG(donnees.Pression)  as PresMoy
+    $sqlQuery = 'SELECT NomCapteurs.NomCapteur,Donnees.DateDonnee,AVG(Donnees.Temperature) as Temp,AVG(Donnees.Humidite) as Hum,AVG(Donnees.Pression)  as Pres
 
-    FROM donnees JOIN nomcapteurs ON donnees.Id_NomCapteurs = nomcapteurs.Id_NomCapteurs 
+    FROM Donnees JOIN NomCapteurs ON Donnees.Id_NomCapteurs = NomCapteurs.Id_NomCapteurs 
     
-    WHERE donnees.DateDonnee BETWEEN NOW() -INTERVAL 7 DAY   AND NOW() 
+    WHERE Donnees.DateDonnee BETWEEN NOW() -INTERVAL 7 DAY   AND NOW() 
     
-    GROUP BY day(donnees.DateDonnee); ';
+    GROUP BY day(Donnees.DateDonnee); ';
     $sql = $pdo->prepare($sqlQuery) ;
     $sql->execute() ;
     return $sql->fetchall();
@@ -34,12 +34,38 @@ function getByDates($pdo,$idCapt, $dateDebut, $dateFin) :array
 
     $dateFin = date('Y-m-d', strtotime($dateFin. ' + 1 days'));
 
-    $sqlQuery = 'SELECT nomcapteurs.NomCapteur,donnees.DateDonnee,AVG(donnees.Temperature) as TempMoy,AVG(donnees.Humidite) as HumMoy,AVG(donnees.Pression) as PresMoy
-    FROM donnees JOIN nomcapteurs ON donnees.Id_NomCapteurs = nomcapteurs.Id_NomCapteurs 
-    WHERE nomcapteurs.Id_NomCapteurs = :idCapt 
-    AND donnees.DateDonnee BETWEEN :dateDeb  AND :dateFin
+    $sqlQuery = 'SELECT NomCapteurs.NomCapteur,Donnees.DateDonnee,AVG(Donnees.Temperature) as Temp,AVG(Donnees.Humidite) as Hum,AVG(Donnees.Pression) as Pres
+    FROM Donnees JOIN NomCapteurs ON Donnees.Id_NomCapteurs = NomCapteurs.Id_NomCapteurs 
+    WHERE NomCapteurs.Id_NomCapteurs = :idCapt 
+    AND Donnees.DateDonnee BETWEEN :dateDeb  AND :dateFin
     
-    GROUP BY day(donnees.DateDonnee); ';
+    GROUP BY day(Donnees.DateDonnee); ';
+    $sql = $pdo->prepare($sqlQuery) ;
+    $sql->execute(array(
+        'idCapt' => $idCapt,
+        'dateDeb' => $dateDebut,
+        'dateFin' => $dateFin
+    )) ;
+    return $sql->fetchall();
+}
+
+/** 
+ * getByDatesDetail renvoie les données selon une date de début et de fin
+ *
+ * @param  mixed $pdo
+ * @param  DateTime $dateDebut
+ * @param  DateTime $dateFin
+ * @return array
+ */
+function getByDatesDetail($pdo,$idCapt, $dateDebut, $dateFin) :array
+{
+
+    $dateFin = date('Y-m-d', strtotime($dateFin. ' + 1 days'));
+
+    $sqlQuery = 'SELECT NomCapteurs.NomCapteur,Donnees.DateDonnee,Donnees.Temperature as Temp,Donnees.Humidite as Hum ,Donnees.Pression as Pres
+    FROM Donnees JOIN NomCapteurs ON Donnees.Id_NomCapteurs = NomCapteurs.Id_NomCapteurs 
+    WHERE NomCapteurs.Id_NomCapteurs = :idCapt 
+    AND Donnees.DateDonnee BETWEEN :dateDeb  AND :dateFin';
     $sql = $pdo->prepare($sqlQuery) ;
     $sql->execute(array(
         'idCapt' => $idCapt,

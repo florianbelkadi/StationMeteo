@@ -6,21 +6,39 @@ include 'app/htmlData.php';
 
 if(isset($_GET['dateDeb'])&&$_GET['dateDeb']!=null) 
 {
-   $donnees = GetByDates($pdo,3,$_GET['dateDeb'],$_GET['dateFin']);
+    if(isset($_GET['detail'])){
+        $donnees = getByDatesDetail($pdo,$idcapteur,$_GET['dateDeb'],$_GET['dateFin']);
+    }
+    else
+    {
+        $donnees = GetByDates($pdo,$idcapteur,$_GET['dateDeb'],$_GET['dateFin']);
+    }
 }
 else{
     $donnees = getLastWeek($pdo);
 }
 ?>         
-<form action="#" method="get">
+<form action="#" class="dataform" method="get">
     <div class="elementform dates" >
         <label for="dateDeb">Du:</label>
-        <input type="date" id="dateDeb" name="dateDeb">
+        <input class="inputData" type="date" id="dateDeb" name="dateDeb" value="<?php echo isset($_GET['dateDeb'])?$_GET['dateDeb']:'';?>" >
         <label for="dateFin">Au:</label>
-        <input type="date" id="dateFin" name="dateFin">
+        <input class="inputData"  type="date" id="dateFin" name="dateFin" value="<?php echo isset($_GET['dateFin'])?$_GET['dateFin']:'';?>">
     </div>
-    <!-- TODO ajouter une chexkbox pour avoir les données détaillée ou pas -->
-    <input type="submit"  class="elementform" value="Chercher">
+    <div class="elementform">
+        <select name="capteur" class="inputData" id="capteur">
+            <?php 
+                foreach ($capteurs as $capteur) 
+                {
+                    $selected = (isset($_GET['capteur'])&& $_GET['capteur']== $capteur['Id_NomCapteurs']) ?'selected':'';
+                    echo "<option value='".$capteur['Id_NomCapteurs']."' ".$selected.">".$capteur['NomCapteur']."</option>";
+                }
+            ?>
+        </select>
+        <input type="checkbox"  name="detail" value="detail" <?php echo isset($_GET['detail'])?'checked':'';?>>
+        <label for="detail">Afficher les détails</label>
+    </div>
+    <input type="submit"  class="elementform inputData boutonPage" value="Chercher">
 </form>
 <table class="tableau">
     <thead>
@@ -44,3 +62,8 @@ else{
         ?>
     </tbody>
 </table>
+
+
+<?php
+require_once("footer.php") ;
+?>

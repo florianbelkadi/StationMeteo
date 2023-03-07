@@ -29,7 +29,7 @@ const char* password = "StationMdp";
 const int minutes = 10;
 
 //Nom et adresse du raspberry Pi
-String serverName = "http://172.20.10.7:80/stationMeteo/api/receiveData.php";
+String serverName = "http://172.20.10.7:80/Station_Meteo/app/receiveDataSensor.php";
 
 void setup() {
   
@@ -101,7 +101,9 @@ void setup() {
 void loop() {
    int timer = 0;
    String datas;
-    lcd.print("Bonjour");
+   datas = fetchData(); 
+     if (WiFi.status() == WL_CONNECTED)
+     postData(datas);
    while (timer<(12*minutes))
    {
        lcd.clear();
@@ -115,8 +117,7 @@ void loop() {
            }
        timer++;
    }
-   if (WiFi.status() == WL_CONNECTED)
-     postData(datas);
+  
    
 }
 
