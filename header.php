@@ -23,6 +23,7 @@ else
 }
 // recup de la liste des villes dans la BDD
 $villes = getAllTown($pdo);
+
 //Recupération de l'id d'un capteur 
 if (!isset($_GET['ville'])){
     $idville = $villes[0]['Id_Villes'];
