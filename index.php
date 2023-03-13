@@ -74,24 +74,6 @@ $dateApi = date($format, $donneesApi->dt);
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <?php
 require_once("footer.php") ;
 ?>
