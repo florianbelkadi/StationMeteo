@@ -22,14 +22,14 @@ LCD_I2C lcd(0x27,16,2);
 const String sensorName = "Capteur principal";
 
 //Paramètre de la connexion wifi 
-const char* ssid = "Iphone de Chris";
-const char* password = "StationMdp";
+const char* ssid = "moto g(8) plus 3586";
+const char* password = "f10c8304fe9f";
 
 // Définition du délai entre les post au serveur
 const int minutes = 10;
 
 //Nom et adresse du raspberry Pi
-String serverName = "http://172.20.10.7:80/Station_Meteo/app/receiveDataSensor.php";
+String serverName = "http://192.168.43.43:80/Station_Meteo/app/receiveDataSensor.php";
 
 void setup() {
   
