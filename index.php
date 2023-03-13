@@ -1,7 +1,7 @@
 <?php 
 
 require_once("header.php") ;
-require_once 'connexionBDD.php';
+require_once 'app/connexionBDD.php';
 include_once 'app/GetLastSensorDatas.php';
 include_once 'app/GetApiData.php';
 

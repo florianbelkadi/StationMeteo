@@ -8,10 +8,12 @@ if(isset($_GET['dateDeb'])&&$_GET['dateDeb']!=null)
 {
     if(isset($_GET['detail'])){
         $donnees = getSensorByDatesDetail($pdo,$idcapteur,$_GET['dateDeb'],$_GET['dateFin']);
+        $details = 1;
     }
     else
     {
         $donnees = getSensorByDates($pdo,$idcapteur,$_GET['dateDeb'],$_GET['dateFin']);
+        $details = 0;
     }
 }
 else{
@@ -57,7 +59,7 @@ else{
     <tbody>
         <?php 
             foreach ($donnees as $donnee) {
-                echo(htmlData($donnee));
+                echo(htmlData($donnee,$details));
             };
         ?>
     </tbody>

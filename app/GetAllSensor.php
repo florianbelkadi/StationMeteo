@@ -1,5 +1,5 @@
 <?php 
-require_once './connexionBDD.php';
+require_once 'connexionBDD.php';
 
 /**
  * getAllSensor retourne les nom des capteur présents dans la bdd

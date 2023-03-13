@@ -1,5 +1,5 @@
 <?php 
-require_once '../connexionBDD.php';
+require_once 'connexionBDD.php';
 require_once 'InsertDonnees.php';
 require_once 'GetIdCapteur.php';
 /* Reception du JSON */

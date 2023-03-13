@@ -139,7 +139,7 @@ table {
   }
   
   th, td {
-    padding: 1em;
+    padding: 0.7em;
     background: #dddddd3d;
   }
   tr {
@@ -176,6 +176,9 @@ table {
 }
 .boutonPage{
     width: 30%;
+}
+.datecolonne{
+    font-size: 0.8em;
 }
 /* --------------------------------------------------- Footer -------------------------------------------------- */
 

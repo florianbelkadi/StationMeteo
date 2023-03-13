@@ -1,5 +1,5 @@
 <?php 
-include_once '../connexionBDD.php';
+include_once 'connexionBDD.php';
 // Cette foncionn vérifie si le capteur existe deja dans la base de données, le créer s'il n'existe pas et renvoie l'id du capteur
 Function GetIdCapteur($pdo,$nomCap)
 {
@@ -42,7 +42,8 @@ if($nbLigne == 0){
     $id = (int)($pdo->lastInsertId());
 }else{
     $resultat = $sql->fetch();
-    $id = $resultat['id_NomVille'];
+    var_dump($resultat);
+    $id = $resultat['id_Villes'];
 }
 
 return $id;

@@ -8,15 +8,19 @@ if(isset($_GET['dateDeb'])&&$_GET['dateDeb']!=null)
 {
     if(isset($_GET['detail'])){
         $donnees = getApiByDatesDetail($pdo,$idcapteur,$_GET['dateDeb'],$_GET['dateFin']);
+        $details = 1;
     }
     else
     {
         $donnees = GetAPIByDates($pdo,$idcapteur,$_GET['dateDeb'],$_GET['dateFin']);
+        $details =0;
     }
 }
 else{
     $donnees = getLastWeek($pdo);
 }
+
+
 ?>         
 <form action="#" class="dataform" method="get">
     <div class="elementform dates" >
@@ -57,7 +61,7 @@ else{
     <tbody>
         <?php 
             foreach ($donnees as $donnee) {
-                echo(htmlData($donnee));
+                echo(htmlData($donnee,$details));
             };
         ?>
     </tbody>

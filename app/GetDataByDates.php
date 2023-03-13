@@ -1,5 +1,5 @@
 <?php 
-require_once './connexionBDD.php';
+require_once 'connexionBDD.php';
 
 /**
  * getLastWeek retourne les données des 7 dernier jour en faisant une moyenne journalière

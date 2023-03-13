@@ -10,7 +10,7 @@
 
 <body>
 <?php 
-require_once 'connexionBDD.php';
+require_once 'app/connexionBDD.php';
 include_once 'app/GetAllSensor.php';
 $capteurs = getAllSensor($pdo);
 //Recupération de l'id d'un capteur 
