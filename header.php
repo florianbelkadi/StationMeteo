@@ -10,17 +10,17 @@
 
 <body>
 <?php 
-require_once 'connexionBDD.php';
-include_once 'app/GetAllSensor.php';
-$capteurs = getAllSensor($pdo);
-//Recupération de l'id d'un capteur 
-if (!isset($_GET['capteur'])){
-    $idcapteur = $capteurs[0]['Id_NomCapteurs'];
-}
-else
-{
-    $idcapteur = $_GET['capteur'];
-}
+ require_once 'connexionBDD.php';
+ include_once 'app/GetAllSensor.php';
+ $capteurs = getAllSensor($pdo);
+ //Recupération de l'id d'un capteur 
+ if (!isset($_GET['capteur'])){
+     $idcapteur = $capteurs[0]['Id_NomCapteurs'];
+ }
+ else
+ {
+     $idcapteur = $_GET['capteur'];
+ }
 ?>
 
 <header> 
@@ -35,10 +35,10 @@ else
                     <div class="capteurform">
                         <select name="capteur" class="inputData" id="capteur">
                             <?php 
-                                foreach ($capteurs as $capteur) 
-                                {
-                                    echo "<option value=".$capteur['Id_NomCapteurs'].">".$capteur['NomCapteur']."</option>";
-                                }
+                            foreach ($capteurs as $capteur) 
+                             {
+                                 echo "<option value=".$capteur['Id_NomCapteurs'].">".$capteur['NomCapteur']."</option>";
+                             }
                             ?>
                         </select>
                         <input type="submit" class="boutonMenu inputData" value="OK">
