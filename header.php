@@ -12,6 +12,7 @@
 <?php 
 require_once 'connexionBDD.php';
 include_once 'app/GetAllSensor.php';
+// recup de la liste des capteurs dans la bdd
 $capteurs = getAllSensor($pdo);
 //Recupération de l'id d'un capteur 
 if (!isset($_GET['capteur'])){
@@ -21,6 +22,17 @@ else
 {
     $idcapteur = $_GET['capteur'];
 }
+// recup de la liste des villes dans la BDD
+$villes = getAllTown($pdo);
+var_dump($villes);
+//Recupération de l'id d'un capteur 
+if (!isset($_GET['ville'])){
+    $idville = $villes[0]['Id_Villes'];
+}
+else
+{
+    $idville = $_GET['ville'];
+}
 ?>
 
 <header> 
@@ -28,7 +40,8 @@ else
     <div class="menu">
         <ul>
             <li><a href="index.php">Accueil</a></li>
-            <li><a href="donneesParDates.php">Mes Stats</a></li>
+            <li><a href="donneesCapteurs.php">Historique capteur</a></li>
+            <li><a href="donneesAPI.php">Historique API</a></li>
             <li>
                 <form action="index.php" method="GET">
                     <label for="capteur">Changer de capteur</label>

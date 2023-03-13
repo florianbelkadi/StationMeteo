@@ -2,7 +2,7 @@
 include_once '../connexionBDD.php';
 require_once 'GetIdCapteur.php';
 // Cette foncionn permet d'inserer la partie commune des données récoltées (Via api ou capteur) dans la BDD
-Function insertDonnees($pdo,$temp,$hum,$pres,$capt)
+Function insertDonneesCapteur($pdo,$temp,$hum,$pres,$capt)
 {
 //Recupération de l'id du capteur 
 $idCapteur = GetIdCapteur($pdo,$capt);
@@ -14,7 +14,6 @@ $sqlQueryDonnees = 'INSERT INTO Donnees(Temperature,Humidite,Pression,DateDonnee
 $insertDonnee = $pdo->prepare($sqlQueryDonnees);
 $date = new DateTime();
 $date = $date->format('y/m/d  H:i:s');
-var_dump($date);
 // Exécution 
 $insertDonnee->execute([
    'Temperature' =>  $temp,

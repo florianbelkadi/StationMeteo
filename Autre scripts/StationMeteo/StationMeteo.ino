@@ -102,8 +102,8 @@ void loop() {
    int timer = 0;
    String datas;
    datas = fetchData(); 
-     if (WiFi.status() == WL_CONNECTED)
-     postData(datas);
+   if (WiFi.status() == WL_CONNECTED)
+       postData(datas);
    while (timer<(12*minutes))
    {
        lcd.clear();
@@ -181,6 +181,7 @@ void postData(String jsonDatas)
 
 void showData(String datas) 
 {
+  // String vers JSon
   StaticJsonDocument<200> jsonDatas;
   deserializeJson(jsonDatas,datas); 
   // Creation du caractère "°" 

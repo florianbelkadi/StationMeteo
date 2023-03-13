@@ -7,11 +7,11 @@ include 'app/htmlData.php';
 if(isset($_GET['dateDeb'])&&$_GET['dateDeb']!=null) 
 {
     if(isset($_GET['detail'])){
-        $donnees = getByDatesDetail($pdo,$idcapteur,$_GET['dateDeb'],$_GET['dateFin']);
+        $donnees = getApiByDatesDetail($pdo,$idcapteur,$_GET['dateDeb'],$_GET['dateFin']);
     }
     else
     {
-        $donnees = GetByDates($pdo,$idcapteur,$_GET['dateDeb'],$_GET['dateFin']);
+        $donnees = GetAPIByDates($pdo,$idcapteur,$_GET['dateDeb'],$_GET['dateFin']);
     }
 }
 else{
@@ -26,12 +26,12 @@ else{
         <input class="inputData"  type="date" id="dateFin" name="dateFin" value="<?php echo isset($_GET['dateFin'])?$_GET['dateFin']:'';?>">
     </div>
     <div class="elementform">
-        <select name="capteur" class="inputData" id="capteur">
+        <select name="ville" class="inputData" id="ville">
             <?php 
-                foreach ($capteurs as $capteur) 
+                foreach ($villes as $ville) 
                 {
-                    $selected = (isset($_GET['capteur'])&& $_GET['capteur']== $capteur['Id_NomCapteurs']) ?'selected':'';
-                    echo "<option value='".$capteur['Id_NomCapteurs']."' ".$selected.">".$capteur['NomCapteur']."</option>";
+                    $selected = (isset($_GET['ville'])&& $_GET['ville']== $ville['Id_Villes']) ?'selected':'';
+                    echo "<option value='".$ville['Id_Villes']."' ".$selected.">".$ville['NomVille']."</option>";
                 }
             ?>
         </select>

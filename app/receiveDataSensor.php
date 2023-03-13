@@ -15,5 +15,5 @@ if (strlen($jsonData) > 0) {
 } else
     die('Aucune données JSON.');
 
-insertDonnees($pdo,$data['temp'],$data['humidite'],$data['pression'],$data['capteur']);
+insertDonneesCapteur($pdo,$data['temp'],$data['humidite'],$data['pression'],$data['capteur']);
 ?>
