@@ -14,7 +14,7 @@ $sqlQueryDonnees = 'INSERT INTO Donnees(Temperature,Humidite,Pression,DateDonnee
 $insertDonnee = $pdo->prepare($sqlQueryDonnees);
 $date = new DateTime();
 $date = $date->format('y/m/d  H:i:s');
-var_dump($date);
+
 // Exécution 
 $insertDonnee->execute([
    'Temperature' =>  $temp,
