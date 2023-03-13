@@ -12,7 +12,6 @@
 <?php 
 require_once 'connexionBDD.php';
 include_once 'app/GetAllSensor.php';
-// recup de la liste des capteurs dans la bdd
 $capteurs = getAllSensor($pdo);
 //Recupération de l'id d'un capteur 
 if (!isset($_GET['capteur'])){
@@ -48,10 +47,10 @@ else
                     <div class="capteurform">
                         <select name="capteur" class="inputData" id="capteur">
                             <?php 
-                                foreach ($capteurs as $capteur) 
-                                {
-                                    echo "<option value=".$capteur['Id_NomCapteurs'].">".$capteur['NomCapteur']."</option>";
-                                }
+                            foreach ($capteurs as $capteur) 
+                             {
+                                 echo "<option value=".$capteur['Id_NomCapteurs'].">".$capteur['NomCapteur']."</option>";
+                             }
                             ?>
                         </select>
                         <input type="submit" class="boutonMenu inputData" value="OK">

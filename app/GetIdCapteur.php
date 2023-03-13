@@ -22,4 +22,30 @@ if($nbLigne == 0){
 
 return $id;
 }
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// Cette foncion vérifie si la ville existe deja dans la base de données, la créer si elle n'existe pas et renvoie l'id de la ville
+Function GetIdVille($pdo,$nomVille)
+{
+// Recherche dans la table nomVille si la ville existe
+$sqlQueryVille = 'SELECT id_Villes FROM Villes WHERE NomVille = :nomVille';
+$sql = $pdo->prepare($sqlQueryVille) ;
+$sql->execute(array('nomVille' => $nomVille)) ;
+$nbLigne = $sql->rowCount() ;
+
+// Insere la ville si elle n'existe pas, renvoie l'id 
+if($nbLigne == 0){
+    $InsertVille = 'INSERT INTO Villes(NomVille) VALUES (:nomVille)';
+    $sql = $pdo->prepare($InsertVille) ;
+    $sql->execute(array('nomVille' => $nomVille)) ;
+    $id = (int)($pdo->lastInsertId());
+}else{
+    $resultat = $sql->fetch();
+    $id = $resultat['id_NomVille'];
+}
+
+return $id;
+}
+
 ?>
