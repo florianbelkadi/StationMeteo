@@ -1,7 +1,9 @@
 <?php 
 include_once 'connexionBDD.php';
 require_once 'GetId.php';
-// Cette foncionn permet d'inserer les données récoltées via capteur dans la BDD
+date_default_timezone_set('Europe/Paris');
+
+// Cette fonction permet d'inserer les données récoltées via capteur dans la BDD
 Function insertDonneesCapteur($pdo,$temp,$hum,$pres,$capt)
 {
 //Recupération de l'id du capteur 

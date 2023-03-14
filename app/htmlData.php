@@ -1,5 +1,5 @@
 <?php 
-
+// Cette fonction met en forme les données extraite pour l'afficher dans un tableau html
 function htmlData($donnee,$details)
 {
     $date = $details==1?$donnee['DateDonnee']:substr($donnee['DateDonnee'],0,10);

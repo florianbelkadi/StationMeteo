@@ -9,16 +9,16 @@ $donneesCapteur = GetLastSensorDatas($pdo,$idcapteur);
 
 $donneesApi = GetApiData();
 $format = "l d M Y à H:i:s";
-$dateApi = date($format, $donneesApi->dt);
-
-
+$dateApi = date($format, $donneesApi->dt + 3600);
+$date =  isset($donneesCapteur['DateDonnee'])? strtotime($donneesCapteur['DateDonnee']):null;
+$dateCapteur = date($format,$date);
 ?>
 <div class="donneesParSource">
     <h2>
         <?php echo isset($donneesCapteur['NomCapteur'])?$donneesCapteur['NomCapteur']:"XX";?>
     </h2>
     <h5>
-        <?php echo isset($donneesCapteur['DateDonnee'])?$donneesCapteur['DateDonnee']:"Pas de données pour ce capteur";?>
+        <?php echo isset($donneesCapteur['DateDonnee'])?$dateCapteur:"Pas de données pour ce capteur";?>
     </h5>
     <div class="boxSecondaire">
         <div class="maisonIcon"></div>

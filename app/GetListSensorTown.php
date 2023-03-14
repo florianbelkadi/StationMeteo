@@ -2,7 +2,7 @@
 require_once 'connexionBDD.php';
 
 /**
- * getAllSensor retourne les nom des capteur présents dans la bdd
+ * getAllSensor retourne les noms des capteurs présents dans la bdd
  *
  * @param  PDO $pdo connexion à la bdd
  * @return array tableau contenant les valeurs
@@ -16,7 +16,7 @@ function getAllSensor($pdo) :array
 }
 
 /**
- * getAlltown retourne les nom des villes présents dans la bdd
+ * getAlltown retourne les noms des villes présents dans la bdd
  *
  * @param  PDO $pdo connexion à la bdd
  * @return array tableau contenant les valeurs

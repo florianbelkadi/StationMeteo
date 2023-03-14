@@ -3,7 +3,8 @@ require_once("header.php") ;
 require_once 'app/connexionBDD.php';
 include 'app/GetDataByDates.php';
 include 'app/htmlData.php';
-
+$date=date_create();
+date_sub($date,date_interval_create_from_date_string("7 days"));
 if(isset($_GET['dateDeb'])&&$_GET['dateDeb']!=null) 
 {
     if(isset($_GET['detail'])){
@@ -19,15 +20,15 @@ if(isset($_GET['dateDeb'])&&$_GET['dateDeb']!=null)
 else{
     $donnees = getApiLastWeek($pdo);
 }
+?>    
 
 
-?>         
 <form action="#" class="dataform" method="get">
-    <div class="elementform dates" >
+<div class="elementform dates" >
         <label for="dateDeb">Du:</label>
-        <input class="inputData" type="date" id="dateDeb" name="dateDeb" value="<?php echo isset($_GET['dateDeb'])?$_GET['dateDeb']:'';?>" >
+        <input class="inputData" type="date" id="dateDeb" name="dateDeb" value="<?php echo isset($_GET['dateDeb'])?$_GET['dateDeb']:date_format($date,"Y-m-d");?>" >
         <label for="dateFin">Au:</label>
-        <input class="inputData"  type="date" id="dateFin" name="dateFin" value="<?php echo isset($_GET['dateFin'])?$_GET['dateFin']:'';?>">
+        <input class="inputData"  type="date" id="dateFin" name="dateFin" value="<?php echo isset($_GET['dateFin'])?$_GET['dateFin']:date('Y-m-d');?>">
     </div>
     <div class="elementform">
         <select name="ville" class="inputData" id="ville">
@@ -48,7 +49,7 @@ else{
     <thead>
         <tr>
             <th colspan="4">
-                <?php echo $donnees[0]["NomCapteur"]?>
+                <?php echo $donnees[0]["NomVille"]?>
             </th>
         </tr>
         <tr>

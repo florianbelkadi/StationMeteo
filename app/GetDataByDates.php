@@ -81,7 +81,8 @@ function getSensorByDatesDetail($pdo,$idCapt, $dateDebut, $dateFin) :array
     $sqlQuery = 'SELECT NomCapteurs.NomCapteur,Donnees.DateDonnee,Donnees.Temperature as Temp,Donnees.Humidite as Hum ,Donnees.Pression as Pres
     FROM Donnees JOIN NomCapteurs ON Donnees.Id_NomCapteurs = NomCapteurs.Id_NomCapteurs 
     WHERE NomCapteurs.Id_NomCapteurs = :idCapt 
-    AND Donnees.DateDonnee BETWEEN :dateDeb  AND :dateFin';
+    AND Donnees.DateDonnee BETWEEN :dateDeb  AND :dateFin 
+    ORDER BY Donnees.DateDonnee DESC';
     $sql = $pdo->prepare($sqlQuery) ;
     $sql->execute(array(
         'idCapt' => $idCapt,
@@ -132,9 +133,10 @@ function getApiByDatesDetail($pdo,$idVilles, $dateDebut, $dateFin) :array
     $dateFin = date('Y-m-d', strtotime($dateFin. ' + 1 days'));
 
     $sqlQuery = 'SELECT Villes.Id_Villes ,Donnees.DateDonnee,Donnees.Temperature as Temp,Donnees.Humidite as Hum ,Donnees.Pression as Pres
-    FROM Donnees JOIN Villes ON Donnees.Id_Villes= Villes.Id_Villes
+    FROM Donnees JOIN Villes ON Donnees.Id_Villes= Villes.Id_Villes 
     WHERE Villes.Id_Villes = :idVilles 
-    AND Donnees.DateDonnee BETWEEN :dateDeb  AND :dateFin';
+    AND Donnees.DateDonnee BETWEEN :dateDeb  AND :dateFin
+     ORDER BY Donnees.DateDonnee DESC';
     $sql = $pdo->prepare($sqlQuery) ;
     $sql->execute(array(
         'idVilles' => $idVilles,
