@@ -2,8 +2,7 @@
 
 require_once("header.php") ;
 require_once 'app/connexionBDD.php';
-include_once 'app/GetLastSensorDatas.php';
-include_once 'app/GetApiData.php';
+include_once 'app/GetLastDatas.php';
 
 // Recupération des dernière données du capteur
 $donneesCapteur = GetLastSensorDatas($pdo,$idcapteur);

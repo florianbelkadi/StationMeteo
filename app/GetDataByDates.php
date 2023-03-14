@@ -2,12 +2,12 @@
 require_once 'connexionBDD.php';
 
 /**
- * getLastWeek retourne les données des 7 dernier jour en faisant une moyenne journalière
+ * getSensorLastWeek retourne les données du capteur des 7 dernier jour en faisant une moyenne journalière
  *
  * @param  PDO $pdo connexion à la bdd
  * @return array tableau contenant les valeurs
  */
-function getLastWeek($pdo) :array
+function getSensorLastWeek($pdo) :array
 {
     $sqlQuery = 'SELECT NomCapteurs.NomCapteur,Donnees.DateDonnee,AVG(Donnees.Temperature) as Temp,AVG(Donnees.Humidite) as Hum,AVG(Donnees.Pression)  as Pres
 
@@ -16,6 +16,23 @@ function getLastWeek($pdo) :array
     WHERE Donnees.DateDonnee BETWEEN NOW() -INTERVAL 7 DAY   AND NOW() 
     
     GROUP BY day(Donnees.DateDonnee); ';
+    $sql = $pdo->prepare($sqlQuery) ;
+    $sql->execute() ;
+    return $sql->fetchall();
+}
+
+/**
+ * getApiLastWeek retourne les données des 7 dernier jour en faisant une moyenne journalière
+ *
+ * @param  PDO $pdo connexion à la bdd
+ * @return array tableau contenant les valeurs
+ */
+function getApiLastWeek($pdo) :array
+{
+    $sqlQuery = 'SELECT Villes.NomVille ,Donnees.DateDonnee,AVG(Donnees.Temperature) as Temp,AVG(Donnees.Humidite) as Hum,AVG(Donnees.Pression) as Pres
+    FROM Donnees JOIN Villes ON Donnees.Id_Villes = Villes.Id_Villes 
+    AND Donnees.DateDonnee BETWEEN NOW() -INTERVAL 7 DAY   AND NOW() 
+    GROUP BY day(Donnees.DateDonnee)'; 
     $sql = $pdo->prepare($sqlQuery) ;
     $sql->execute() ;
     return $sql->fetchall();
@@ -38,7 +55,6 @@ function getSensorByDates($pdo,$idCapt, $dateDebut, $dateFin) :array
     FROM Donnees JOIN NomCapteurs ON Donnees.Id_NomCapteurs = NomCapteurs.Id_NomCapteurs 
     WHERE NomCapteurs.Id_NomCapteurs = :idCapt 
     AND Donnees.DateDonnee BETWEEN :dateDeb  AND :dateFin
-    
     GROUP BY day(Donnees.DateDonnee); ';
     $sql = $pdo->prepare($sqlQuery) ;
     $sql->execute(array(
@@ -83,7 +99,7 @@ function getSensorByDatesDetail($pdo,$idCapt, $dateDebut, $dateFin) :array
  * @param  DateTime $dateFin
  * @return array
  */
-function getAPIByDates($pdo,$idVilles, $dateDebut, $dateFin) :array
+function getApiByDates($pdo,$idVilles, $dateDebut, $dateFin) :array
 {
 
     $dateFin = date('Y-m-d', strtotime($dateFin. ' + 1 days'));
@@ -92,7 +108,6 @@ function getAPIByDates($pdo,$idVilles, $dateDebut, $dateFin) :array
     FROM Donnees JOIN Villes ON Donnees.Id_Villes = Villes.Id_Villes 
     WHERE Villes.Id_Villes = :idVilles 
     AND Donnees.DateDonnee BETWEEN :dateDeb  AND :dateFin
-    
     GROUP BY day(Donnees.DateDonnee); ';
     $sql = $pdo->prepare($sqlQuery) ;
     $sql->execute(array(
@@ -111,7 +126,7 @@ function getAPIByDates($pdo,$idVilles, $dateDebut, $dateFin) :array
  * @param  DateTime $dateFin
  * @return array
  */
-function getAPIByDatesDetail($pdo,$idVilles, $dateDebut, $dateFin) :array
+function getApiByDatesDetail($pdo,$idVilles, $dateDebut, $dateFin) :array
 {
 
     $dateFin = date('Y-m-d', strtotime($dateFin. ' + 1 days'));

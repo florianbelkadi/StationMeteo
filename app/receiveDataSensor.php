@@ -1,7 +1,7 @@
 <?php 
 require_once 'connexionBDD.php';
 require_once 'InsertDonnees.php';
-require_once 'GetIdCapteur.php';
+require_once 'GetId.php';
 /* Reception du JSON */
 $jsonData = file_get_contents("php://input");
       

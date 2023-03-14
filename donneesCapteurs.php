@@ -1,6 +1,6 @@
 <?php
 require_once("header.php") ;
-require_once 'connexionBDD.php';
+require_once 'app/connexionBDD.php';
 include 'app/GetDataByDates.php';
 include 'app/htmlData.php';
 
@@ -17,7 +17,7 @@ if(isset($_GET['dateDeb'])&&$_GET['dateDeb']!=null)
     }
 }
 else{
-    $donnees = getLastWeek($pdo);
+    $donnees = getSensorLastWeek($pdo);
 }
 ?>         
 <form action="#" class="dataform" method="get">

@@ -11,7 +11,7 @@
 <body>
 <?php 
 require_once 'app/connexionBDD.php';
-include_once 'app/GetAllSensor.php';
+include_once 'app/GetListSensorTown.php';
 $capteurs = getAllSensor($pdo);
 //Recupération de l'id d'un capteur 
 if (!isset($_GET['capteur'])){

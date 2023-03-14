@@ -1,7 +1,7 @@
 <?php 
 include_once 'connexionBDD.php';
-require_once 'GetIdCapteur.php';
-// Cette foncionn permet d'inserer la partie commune des données récoltées (Via api ou capteur) dans la BDD
+require_once 'GetId.php';
+// Cette foncionn permet d'inserer les données récoltées via capteur dans la BDD
 Function insertDonneesCapteur($pdo,$temp,$hum,$pres,$capt)
 {
 //Recupération de l'id du capteur 
