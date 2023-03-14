@@ -4,9 +4,9 @@ require_once("header.php") ;
 require_once 'app/connexionBDD.php';
 include_once 'app/GetLastDatas.php';
 
-// Recupération des dernière données du capteur
+// Recupération des dernières données du capteur
 $donneesCapteur = GetLastSensorDatas($pdo,$idcapteur);
-
+// Appel à lAPI pour avoir les dernières données
 $donneesApi = GetApiData();
 $format = "l d M Y à H:i:s";
 $dateApi = date($format, $donneesApi->dt + 3600);

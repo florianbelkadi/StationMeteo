@@ -3,6 +3,7 @@ require_once("header.php") ;
 require_once 'app/connexionBDD.php';
 include 'app/GetDataByDates.php';
 include 'app/htmlData.php';
+// Recupère le daye de la semaine dernière pour pré-remplir le champ date
 $date=date_create();
 date_sub($date,date_interval_create_from_date_string("7 days"));
 if(isset($_GET['dateDeb'])&&$_GET['dateDeb']!=null) 

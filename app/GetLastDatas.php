@@ -8,7 +8,7 @@ function GetLastSensorDatas($pdo,$idCapt)
     return $sql->fetch();
 }
 
-// Cette fonction renvoi les données collectées via OpenWeatherMap
+// Cette fonction renvoi sous forme d'objet les données collectées via OpenWeatherMap 
 Function GetApiData()
 {
 $apiKey = "27e2a142ffdf63a48c83fd2c5dba623c";

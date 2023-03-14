@@ -1,6 +1,6 @@
 <?php 
 include_once 'connexionBDD.php';
-// Cette foncionn vérifie si le capteur existe deja dans la base de données, le créer s'il n'existe pas et renvoie l'id du capteur
+// Cette fonction vérifie si le capteur existe deja dans la base de données, le créer s'il n'existe pas et renvoie l'id du capteur
 Function GetIdCapteur($pdo,$nomCap)
 {
 // Recherche dans la table nomCapteur si le capteur existe
@@ -25,7 +25,7 @@ return $id;
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-// Cette foncion vérifie si la ville existe deja dans la base de données, la créer si elle n'existe pas et renvoie l'id de la ville
+// Cette fonction vérifie si la ville existe deja dans la base de données, la créer si elle n'existe pas et renvoie l'id de la ville
 Function GetIdVille($pdo,$nomVille)
 {
 // Recherche dans la table nomVille si la ville existe

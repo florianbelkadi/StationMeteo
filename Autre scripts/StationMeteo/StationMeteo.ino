@@ -4,8 +4,9 @@
 #include <WiFiClient.h>
 // JSON
 #include <ArduinoJson.h>
-// CAPTEUR ET BRANCHEMENT
+// CAPTEUR
 #include <BME280I2C.h>
+// BRANCHEMENT
 #include <Wire.h>
 // Ecran LCD
 #include <LCD_I2C.h>
