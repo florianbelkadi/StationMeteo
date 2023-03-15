@@ -51,8 +51,8 @@ $dateCapteur = date($format,$date);
         <?php echo isset($donneesApi->dt)?$dateApi:"Pas de données pour ce capteur";?>
     </h5>
     <div class="boxSecondaire">
-        <div class="maisonIcon"></div>
-        <div class="temperature">
+        <div class="villeIcon"></div>
+        <div class="temperature ">
         <p><?php echo  isset($donneesApi->main->temp)? $donneesApi->main->temp: "XX";?> °C </p>
             <p><?php echo  isset($donneesApi->weather[0]->description)? $donneesApi->weather[0]->description: "XX";?> </p>
             </div>

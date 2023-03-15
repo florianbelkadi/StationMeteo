@@ -93,6 +93,13 @@ header{
     height: 150px;
     width: 150px;
 }
+.villeIcon{
+    background-image: url(img/ville.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 150px;
+    width: 150px;
+}
 
 .humiditeIcon{
     background-image: url(img/Humidité.svg);
