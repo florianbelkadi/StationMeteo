@@ -29,7 +29,7 @@ return $id;
 Function GetIdVille($pdo,$nomVille)
 {
 // Recherche dans la table nomVille si la ville existe
-$sqlQueryVille = 'SELECT id_Villes FROM Villes WHERE NomVille = :nomVille';
+$sqlQueryVille = 'SELECT Id_Villes FROM Villes WHERE NomVille = :nomVille';
 $sql = $pdo->prepare($sqlQueryVille) ;
 $sql->execute(array('nomVille' => $nomVille)) ;
 $nbLigne = $sql->rowCount() ;
@@ -42,8 +42,7 @@ if($nbLigne == 0){
     $id = (int)($pdo->lastInsertId());
 }else{
     $resultat = $sql->fetch();
-    var_dump($resultat);
-    $id = $resultat['id_Villes'];
+    $id = $resultat['Id_Villes'];
 }
 
 return $id;
