@@ -62,5 +62,5 @@ else
         </ul>
     </div>
     <h1> STATION METEO </h1>
-    <a href="#"><div class="refreshIcon"></div></a> 
+    <a href="."><div class="refreshIcon"></div></a> 
 </header>
